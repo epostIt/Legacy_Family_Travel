@@ -8,8 +8,13 @@ type PlanCruiseModalProps = {
   onClose: () => void;
 };
 
-export default function PlanCruiseModal({ open, onClose }: PlanCruiseModalProps) {
-  const [submitState, setSubmitState] = useState<"idle" | "submitting" | "success" | "error">("idle");
+export default function PlanCruiseModal({
+  open,
+  onClose,
+}: PlanCruiseModalProps) {
+  const [submitState, setSubmitState] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
   const [validationMessage, setValidationMessage] = useState("");
 
   useEffect(() => {
@@ -67,17 +72,31 @@ export default function PlanCruiseModal({ open, onClose }: PlanCruiseModalProps)
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 px-4" role="dialog" aria-modal="true">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 px-4"
+      role="dialog"
+      aria-modal="true"
+    >
       <div className="w-full max-w-lg rounded-3xl bg-white p-6 shadow-soft sm:p-8">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h3 className="font-display text-2xl text-brand-900">Easier travel is just a click away</h3>
-            <p className="mt-2 text-sm text-slate-600">Share a few details and we&apos;ll follow up with tailored options.</p>
+            <h3 className="font-display text-2xl text-brand-900">
+              Easier travel is just a click away.
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Share a few details and we&apos;ll follow up with tailored
+              options.
+            </p>
             <p className="mt-1 text-xs text-slate-500">
               {businessInfo.advisorName} • {businessInfo.phone}
             </p>
           </div>
-          <button type="button" onClick={onClose} aria-label="Close modal" className="text-2xl leading-none text-slate-400 hover:text-slate-600">
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close modal"
+            className="text-2xl leading-none text-slate-400 hover:text-slate-600"
+          >
             ×
           </button>
         </div>
@@ -121,20 +140,30 @@ export default function PlanCruiseModal({ open, onClose }: PlanCruiseModalProps)
           </button>
 
           {validationMessage && (
-            <p className="rounded-xl bg-amber-50 p-3 text-sm font-medium text-amber-700" role="alert">
+            <p
+              className="rounded-xl bg-amber-50 p-3 text-sm font-medium text-amber-700"
+              role="alert"
+            >
               {validationMessage}
             </p>
           )}
 
           {submitState === "success" && (
-            <p className="rounded-xl bg-emerald-50 p-3 text-sm font-medium text-emerald-700" role="status">
+            <p
+              className="rounded-xl bg-emerald-50 p-3 text-sm font-medium text-emerald-700"
+              role="status"
+            >
               Thanks! Your inquiry was sent.
             </p>
           )}
 
           {submitState === "error" && (
-            <p className="rounded-xl bg-red-50 p-3 text-sm font-medium text-red-700" role="alert">
-              We couldn&apos;t send your inquiry right now. Please email {businessInfo.primaryEmail}.
+            <p
+              className="rounded-xl bg-red-50 p-3 text-sm font-medium text-red-700"
+              role="alert"
+            >
+              We couldn&apos;t send your inquiry right now. Please email{" "}
+              {businessInfo.primaryEmail}.
             </p>
           )}
         </form>
